@@ -5,7 +5,7 @@ public class Main {
 
     static ArrayList<String> linkList = new ArrayList<>();
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) {
 
 
         GetLinks getLink = new GetLinks();

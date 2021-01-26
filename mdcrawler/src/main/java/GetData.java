@@ -15,9 +15,15 @@ public class GetData {
     BufferedWriter bwerr;
     BufferedWriter bwlatest;
 
-    public GetData() throws IOException {
-        bwerr=new BufferedWriter(new FileWriter("resources/unadded.txt",true));
-        bwlatest=new BufferedWriter(new FileWriter("resources/latest.txt",false));
+    public GetData(){
+        try{
+            bwerr=new BufferedWriter(new FileWriter("resources/unadded.txt",true));
+            bwlatest=new BufferedWriter(new FileWriter("resources/latest.txt",false));
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     String url ="";
@@ -45,7 +51,7 @@ public class GetData {
     ArrayList<String> tempList = new ArrayList<>();
     String temp;
 
-    public void newData(String url) throws InterruptedException, IOException {
+    public void newData(String url) {
         resetVars();
         this.url=url;
         try {
@@ -62,14 +68,22 @@ public class GetData {
             roundCounter =0;
         } catch (Exception e) {
             System.out.println("Error: "+e.toString());
-            Thread.sleep(3000);
+            try{
+                Thread.sleep(3000);
+            }catch(Exception e2){
+                e2.printStackTrace();
+            }
             if (roundCounter<5) {
                 roundCounter++;
                 newData(url);
             }else{
-                bwerr.newLine();
-                bwerr.append(url);
-                bwerr.flush();
+                try{
+                    bwerr.newLine();
+                    bwerr.append(url);
+                    bwerr.flush();
+                }catch(Exception e2){
+                    e2.printStackTrace();
+                }
             }
         }
     }

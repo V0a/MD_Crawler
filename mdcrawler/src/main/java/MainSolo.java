@@ -2,7 +2,7 @@ import java.io.IOException;
 
 public class MainSolo {
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args){
         String[] url = {"https://mangadex.org/title/42731/a-false-confession",
                 "https://mangadex.org/title/44256/a-fool-and-a-girl",
                 "https://mangadex.org/title/47855/a-friend-who-i-went-to-the-same-middle-school-with-but-have-never-talked-to",

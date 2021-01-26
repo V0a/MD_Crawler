@@ -14,7 +14,7 @@ public class GetLinks {
     public GetLinks() {}
 
 
-    public ArrayList<String> getLinks() throws InterruptedException{
+    public ArrayList<String> getLinks() {
         try {
             ArrayList <String> stringList = new ArrayList<>();
 
@@ -27,7 +27,12 @@ public class GetLinks {
             page++;
             return stringList;
         } catch (Exception e) {
-            Thread.sleep(5000);
+            e.printStackTrace();
+            try{
+                Thread.sleep(5000);
+            }catch(Exception e2){
+                e2.printStackTrace();
+            }
             return getLinks();
         }
     }
