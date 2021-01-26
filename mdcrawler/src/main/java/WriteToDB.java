@@ -7,7 +7,7 @@ public class WriteToDB {
 
     public WriteToDB(GetData data) {
         this.data=data;
-        mySQL = new MySQLConnector("127.0.0.1", "mangadata", "Mangauser", "12345678");
+        mySQL = new MySQLConnector("127.0.0.1", "mangadatanew", "Mangauser", "12345678");
     }
 
     public void write() {

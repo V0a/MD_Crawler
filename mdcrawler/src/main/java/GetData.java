@@ -12,10 +12,12 @@ public class GetData {
 
     int MangaCounter = 0;
     int roundCounter = 0;
-    BufferedWriter bw;
+    BufferedWriter bwerr;
+    BufferedWriter bwlatest;
 
     public GetData() throws IOException {
-        bw=new BufferedWriter(new FileWriter("resources/unadded.txt",true));
+        bwerr=new BufferedWriter(new FileWriter("resources/unadded.txt",true));
+        bwlatest=new BufferedWriter(new FileWriter("resources/latest.txt",false));
     }
 
     String url ="";
@@ -55,6 +57,8 @@ public class GetData {
 
             getData(document,url);
             printData();
+            bwlatest.append("Latest Manga: ").append(getName()).append(" ID:").append(String.valueOf(getMangaID()));
+            bwlatest.flush();
             roundCounter =0;
         } catch (Exception e) {
             System.out.println("Error: "+e.toString());
@@ -63,8 +67,9 @@ public class GetData {
                 roundCounter++;
                 newData(url);
             }else{
-                bw.newLine();
-                bw.append(url);
+                bwerr.newLine();
+                bwerr.append(url);
+                bwerr.flush();
             }
         }
     }
