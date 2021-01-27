@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class Main {
 
     static ArrayList<String> linkList = new ArrayList<>();
-    static String host="127.0.0.1";
-    static String database="mangadata";
-    static String user="suo";
-    static String password="1234";
+    static String host="";
+    static String database="";
+    static String user="";
+    static String password="";
 
     //Dumps for links of mangas that couldn't be read
     static String errorFilePath="mdcrawler/src/main/resources/unadded.txt";
