@@ -7,7 +7,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-
         GetLinks getLink = new GetLinks();
         GetData getData = new GetData();
         WriteToDB writeToDB = new WriteToDB(getData);

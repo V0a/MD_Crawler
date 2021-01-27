@@ -1,12 +1,14 @@
+MainSolo.java
+ MainSolo
+GetLinks.java
+ GetLinks
+GetData.java
+ GetData
+Main.java
+ Main
 MySQLConnector.java
  MySQLConnector
 WriteToDB.java
  WriteToDB
-Main.java
- Main
-MainSolo.java
- MainSolo
-GetData.java
- GetData
-GetLinks.java
- GetLinks
+AddSingle.java
+ AddSingle

@@ -162,14 +162,6 @@ public class MySQLConnector {
         return null;
     }
 
-    public boolean isMute() {
-        return mute;
-    }
-
-    public void setMute(boolean mute) {
-        this.mute = mute;
-    }
-
     public void setPort(int PORT){
         this.PORT = PORT;
     }

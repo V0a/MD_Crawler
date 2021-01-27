@@ -17,8 +17,8 @@ public class GetData {
 
     public GetData(){
         try{
-            bwerr=new BufferedWriter(new FileWriter("resources/unadded.txt",true));
-            bwlatest=new BufferedWriter(new FileWriter("resources/latest.txt",false));
+            bwerr=new BufferedWriter(new FileWriter("mdcrawler/src/main/resources/unaddedtwice.txt",true));
+            bwlatest=new BufferedWriter(new FileWriter("mdcrawler/src/main/resources/latest.txt",false));
 
         }catch(Exception e){
             e.printStackTrace();
@@ -63,7 +63,8 @@ public class GetData {
 
             getData(document,url);
             printData();
-            bwlatest.append("Latest Manga: ").append(getName()).append(" ID:").append(String.valueOf(getMangaID()));
+            bwlatest.append(getName()).append(" ID:").append(String.valueOf(getMangaID()));
+            bwlatest.newLine();
             bwlatest.flush();
             roundCounter =0;
         } catch (Exception e) {
