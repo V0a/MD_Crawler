@@ -3,16 +3,18 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@SuppressWarnings("unused")
 public class MySQLConnector {
 
-    private String HOST;
-    private String DATABASE;
-    private String USER;
-    private String PASSWORD;
+    private final String HOST;
+    private final String DATABASE;
+    private final String USER;
+    private final String PASSWORD;
     private int PORT = 3306;
 
-    private boolean reconnect = true;
-    private boolean mute = false;
+    @SuppressWarnings("FieldCanBeLocal")
+    private final boolean reconnect = true;
+    private final boolean mute = false;
 
     private Connection con;
 

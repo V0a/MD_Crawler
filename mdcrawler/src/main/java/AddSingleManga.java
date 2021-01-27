@@ -9,7 +9,6 @@ public class AddSingleManga {
 
     //Dumps for links of mangas that couldn't be read
     static String errorFilePath="mdcrawler/src/main/resources/unadded.txt";
-    static String errorFilePath2="mdcrawler/src/main/resources/unaddedtwice.txt";
 
     //Dump of all added mangas
     static String nameDumpFilepath="mdcrawler/src/main/resources/latest.txt";

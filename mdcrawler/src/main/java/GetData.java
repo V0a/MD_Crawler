@@ -67,7 +67,7 @@ public class GetData {
             Thread.sleep(1000+new Random().nextInt(1000));
             document = Jsoup.connect(url).get();
 
-            getData(document,url);
+            getData(document);
             printData();
             bwlatest.append(getName()).append(" ID:").append(String.valueOf(getMangaID()));
             bwlatest.newLine();
@@ -95,7 +95,7 @@ public class GetData {
         }
     }
 
-    private void getData(Document document, String url) {
+    private void getData(Document document) {
         //Gets the attributes available
         rowDescription.addAll(document.select("div.col-lg-3.col-xl-2.strong").eachText());
 

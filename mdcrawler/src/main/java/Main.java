@@ -1,7 +1,5 @@
 import java.io.BufferedReader;
-import java.io.FileDescriptor;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
@@ -57,7 +55,6 @@ public class Main {
                 getData.newData(string);
                 writeToDB.write();
             }
-
-
+        writeToDB.cancelConnection();
     }
 }

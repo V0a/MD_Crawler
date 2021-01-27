@@ -7,7 +7,7 @@ public class WriteToDB {
 
     public WriteToDB(GetData data,String host, String database, String user, String password) {
         this.data=data;
-        mySQL = new MySQLConnector("127.0.0.1", "mangadata", "suo", "1234");
+        mySQL = new MySQLConnector(host, database,user,password);
     }
 
     public void write() {
@@ -89,6 +89,10 @@ public class WriteToDB {
     private String getFirstValue (ResultSet set) throws SQLException {
         set.next();
         return set.getString(1);
+    }
+
+    public void cancelConnection(){
+        mySQL.cancelConnection();
     }
 
 }
