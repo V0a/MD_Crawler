@@ -1,0 +1,284 @@
+CREATE TABLE Genre
+(
+  GenreID INT NOT NULL,
+  GenreName VARCHAR(50) NOT NULL,
+  PRIMARY KEY (GenreID),
+  UNIQUE (GenreName)
+);
+
+CREATE TABLE Theme
+(
+  ThemeID INT NOT NULL,
+  ThemeName VARCHAR(50) NOT NULL,
+  PRIMARY KEY (ThemeID),
+  UNIQUE (ThemeName)
+);
+
+CREATE TABLE Format
+(
+  FormatID INT NOT NULL,
+  FormatName VARCHAR(50) NOT NULL,
+  PRIMARY KEY (FormatID),
+  UNIQUE (FormatName)
+);
+
+CREATE TABLE Content
+(
+  ContentID INT NOT NULL,
+  ContentName VARCHAR(30) NOT NULL,
+  PRIMARY KEY (ContentID),
+  UNIQUE (ContentName)
+);
+
+CREATE TABLE Artist
+(
+  ArtistID INT NOT NULL AUTO_INCREMENT,
+  ArtistName VARCHAR(50) NOT NULL,
+  PRIMARY KEY (ArtistID),
+  UNIQUE (ArtistName)
+);
+
+CREATE TABLE OriginalLanguage
+(
+  LanguageID INT NOT NULL,
+  LanguageName VARCHAR(25) NOT NULL,
+  PRIMARY KEY (LanguageID),
+  UNIQUE (LanguageName)
+);
+
+CREATE TABLE Author
+(
+  AuthorID INT NOT NULL AUTO_INCREMENT,
+  AuthorName VARCHAR(50) NOT NULL,
+  PRIMARY KEY (AuthorID),
+  UNIQUE (AuthorName)
+);
+
+CREATE TABLE Demographic
+(
+  DemographicID INT NOT NULL,
+  DemographicName VARCHAR(25) NOT NULL,
+  PRIMARY KEY (DemographicID),
+  UNIQUE (DemographicName)
+);
+
+CREATE TABLE PublicationStatus
+(
+  PublicationStatusID INT NOT NULL,
+  PublicationStatusName VARCHAR(25) NOT NULL,
+  PRIMARY KEY (PublicationStatusID),
+  UNIQUE (PublicationStatusName)
+);
+
+CREATE TABLE Manga
+(
+  MangaID INT NOT NULL,
+  MangaName VARCHAR(75) NOT NULL,
+  Rating FLOAT NOT NULL,
+  Views INT NOT NULL,
+  Follows INT NOT NULL,
+  TotalChapters INT NOT NULL,
+  Link VARCHAR(75) NOT NULL,
+  Description VARCHAR(1500) NOT NULL,
+  ImageLink VARCHAR(75) NOT NULL,
+  LanguageID INT NOT NULL,
+  DemographicID INT NOT NULL,
+  PublicationStatusID INT NOT NULL,
+  PRIMARY KEY (MangaID),
+  FOREIGN KEY (LanguageID) REFERENCES OriginalLanguage(LanguageID),
+  FOREIGN KEY (DemographicID) REFERENCES Demographic(DemographicID),
+  FOREIGN KEY (PublicationStatusID) REFERENCES PublicationStatus(PublicationStatusID)
+);
+
+CREATE TABLE AlternativeName
+(
+  AlternativeName VARCHAR(125) NOT NULL,
+  MangaID INT NOT NULL,
+  FOREIGN KEY (MangaID) REFERENCES Manga(MangaID),
+  UNIQUE (AlternativeName, MangaID)
+);
+
+CREATE TABLE RelatedManga
+(
+  RelatedMangaID INT NOT NULL,
+  MangaID INT NOT NULL,
+  FOREIGN KEY (MangaID) REFERENCES Manga(MangaID),
+  UNIQUE (RelatedMangaID, MangaID)
+);
+
+CREATE TABLE MangaContent
+(
+  ContentID INT NOT NULL,
+  MangaID INT NOT NULL,
+  FOREIGN KEY (ContentID) REFERENCES Content(ContentID),
+  FOREIGN KEY (MangaID) REFERENCES Manga(MangaID),
+  UNIQUE (ContentID, MangaID)
+);
+
+CREATE TABLE MangaFormat
+(
+  FormatID INT NOT NULL,
+  MangaID INT NOT NULL,
+  FOREIGN KEY (FormatID) REFERENCES Format(FormatID),
+  FOREIGN KEY (MangaID) REFERENCES Manga(MangaID),
+  UNIQUE (FormatID, MangaID)
+);
+
+CREATE TABLE MangaTheme
+(
+  ThemeID INT NOT NULL,
+  MangaID INT NOT NULL,
+  FOREIGN KEY (ThemeID) REFERENCES Theme(ThemeID),
+  FOREIGN KEY (MangaID) REFERENCES Manga(MangaID),
+  UNIQUE (ThemeID, MangaID)
+);
+
+CREATE TABLE MangaGenre
+(
+  GenreID INT NOT NULL,
+  MangaID INT NOT NULL,
+  FOREIGN KEY (GenreID) REFERENCES Genre(GenreID),
+  FOREIGN KEY (MangaID) REFERENCES Manga(MangaID),
+  UNIQUE (GenreID, MangaID)
+);
+
+CREATE TABLE MangaAuthor
+(
+  AuthorID INT NOT NULL,
+  MangaID INT NOT NULL,
+  FOREIGN KEY (AuthorID) REFERENCES Author(AuthorID),
+  FOREIGN KEY (MangaID) REFERENCES Manga(MangaID),
+  UNIQUE (AuthorID, MangaID)
+);
+
+CREATE TABLE MangaArtist
+(
+  ArtistID INT NOT NULL,
+  MangaID INT NOT NULL,
+  FOREIGN KEY (ArtistID) REFERENCES Artist(ArtistID),
+  FOREIGN KEY (MangaID) REFERENCES Manga(MangaID),
+  UNIQUE (ArtistID, MangaID)
+);
+
+INSERT INTO originallanguage (LanguageID, LanguageName) VALUES
+(0,"Not Specified"),
+(1,"Japanese"),
+(2,"English"),
+(3,"Polish"),
+(4,"Russian"),
+(5,"German"),
+(6,"French"),
+(7,"Vietnamese"),
+(8,"Chinese"),
+(9,"Indonesian"),
+(10,"Korean"),
+(11,"Spanish"),
+(12,"Thai"),
+(13,"Phillipino"),
+(14,"Chinese (Traditional)");
+
+
+INSERT INTO genre (GenreID, GenreName) VALUES
+(0,"Not Specified"),
+(1,"Action"),
+(2,"Adventure"),
+(3,"Comedy"),
+(4,"Crime"),
+(5,"Drama"),
+(6,"Fantasy"),
+(7,"Historical"),
+(8,"Horror"),
+(9,"Isekai"),
+(10,"Magical Girls"),
+(11,"Mecha"),
+(12,"Medical"),
+(13,"Mystery"),
+(14,"Philosophical"),
+(15,"Psychological"),
+(16,"Romance"),
+(17,"Sci-Fi"),
+(18,"Shoujo Ai"),
+(19,"Shounen Ai"),
+(20,"Slice of Life"),
+(21,"Sports"),
+(22,"Superhero"),
+(23,"Thriller"),
+(24,"Tragedy"),
+(25,"Wuxia"),
+(26,"Yaoi"),
+(27,"Yuri");
+
+INSERT INTO content (ContentID, ContentName) VALUES
+(0,"Not Specified"),
+(1,"Ecchi"),
+(2,"Gore"),
+(3,"Sexual Violence"),
+(4,"Smut");
+
+INSERT INTO format (FormatID, FormatName) VALUES
+(0,"Not Specified"),
+(1,"4-Koma"),
+(2,"Adaptation"),
+(3,"Anthology"),
+(4,"Award Winning"),
+(5,"Doujinshi"),
+(6,"Fan Colored"),
+(7,"Full Color"),
+(8,"Long Strip"),
+(9,"Official Colored"),
+(10,"Oneshot"),
+(11,"User Created"),
+(12,"Web Comic");
+
+INSERT INTO theme (ThemeID, ThemeName) VALUES
+(0,"Not Specified"),
+(1,"Aliens"),
+(2,"Animals"),
+(3,"Cooking"),
+(4,"Crossdressing"),
+(5,"Delinquents"),
+(6,"Demons"),
+(7,"Genderswap"),
+(8,"Ghosts"),
+(9,"Gyaru"),
+(10,"Harem"),
+(11,"Incest"),
+(12,"Loli"),
+(13,"Mafia"),
+(14,"Magic"),
+(15,"Martial Arts"),
+(16,"Military"),
+(17,"Monster Girls"),
+(18,"Monsters"),
+(19,"Music"),
+(20,"Ninja"),
+(21,"Office Workers"),
+(22,"Police"),
+(23,"Post-Apocalyptic"),
+(24,"Reincarnation"),
+(25,"Reverse Harem"),
+(26,"Samurai"),
+(27,"School Life"),
+(28,"Shota"),
+(29,"Supernatural"),
+(30,"Survival"),
+(31,"Time Travel"),
+(32,"Traditional Games"),
+(33,"Vampires"),
+(34,"Video Games"),
+(35,"Virtual Reality"),
+(36,"Zombies");
+
+INSERT INTO Demographic (DemographicID, DemographicName) VALUES
+(0,"Not Specified"),
+(1,"Shounen"),
+(2,"Shoujo"),
+(3,"Seinen"),
+(4,"Josei");
+
+INSERT INTO PublicationStatus (PublicationStatusID, PublicationStatusName) VALUES
+(0,"Not Specified"),
+(1,"Ongoing"),
+(2,"Completed"),
+(3,"Cancelled"),
+(4,"Hiatus");

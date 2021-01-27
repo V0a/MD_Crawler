@@ -9,9 +9,11 @@ public class GetLinks {
 
     int page =1;
     Document document;
+    String urlPart;
 
-
-    public GetLinks() {}
+    public GetLinks(String urlPart) {
+        this.urlPart=urlPart;
+    }
 
 
     public ArrayList<String> getLinks() {
@@ -19,7 +21,7 @@ public class GetLinks {
             ArrayList <String> stringList = new ArrayList<>();
 
             Thread.sleep(1000+new Random().nextInt(1000));
-            document = Jsoup.connect("https://mangadex.org/titles/2/"+page).get();
+            document = Jsoup.connect(urlPart+page).get();
 
             for (Element mangaEntry : document.select("div.manga-entry.col-lg-6.border-bottom.pl-0.my-1")) {
                 stringList.add(mangaEntry.child(0).select("a").get(0).absUrl("href"));

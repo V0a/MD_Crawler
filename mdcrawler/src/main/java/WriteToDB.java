@@ -5,7 +5,7 @@ public class WriteToDB {
     MySQLConnector mySQL;
     GetData data;
 
-    public WriteToDB(GetData data) {
+    public WriteToDB(GetData data,String host, String database, String user, String password) {
         this.data=data;
         mySQL = new MySQLConnector("127.0.0.1", "mangadata", "suo", "1234");
     }

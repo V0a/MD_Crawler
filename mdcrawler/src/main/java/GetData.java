@@ -15,16 +15,8 @@ public class GetData {
     BufferedWriter bwerr;
     BufferedWriter bwlatest;
 
-    public GetData(){
-        try{
-            bwerr=new BufferedWriter(new FileWriter("mdcrawler/src/main/resources/unaddedtwice.txt",true));
-            bwlatest=new BufferedWriter(new FileWriter("mdcrawler/src/main/resources/latest.txt",false));
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
-    }
+    String errorFilePath;
+    String addedDumpFilePath;
 
     String url ="";
     String name ="";
@@ -50,6 +42,20 @@ public class GetData {
 
     ArrayList<String> tempList = new ArrayList<>();
     String temp;
+
+    public GetData(String errorFilePath, String addedDumpFilePath){
+        this.errorFilePath=errorFilePath;
+        this.addedDumpFilePath=addedDumpFilePath;
+
+        try{
+            bwerr=new BufferedWriter(new FileWriter(this.errorFilePath,true));
+            bwlatest=new BufferedWriter(new FileWriter(this.addedDumpFilePath,false));
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
 
     public void newData(String url) {
         resetVars();
@@ -471,6 +477,14 @@ public class GetData {
         System.out.println();
         System.out.println();
 
+    }
+
+    public void closeErrorWriter(){
+        try{
+            bwerr.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }
