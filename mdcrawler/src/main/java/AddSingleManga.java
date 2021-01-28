@@ -2,10 +2,10 @@ public class AddSingleManga {
 
     static String urlToAdd="https://mangadex.org/title/43476/yakuza-reincarnation";
 
-    static String host="127.0.0.1";
-    static String database="mangadata";
-    static String user="suo";
-    static String password="1234";
+    static String host="";
+    static String database="";
+    static String user="";
+    static String password="";
 
     //Dumps for links of mangas that couldn't be read
     static String errorFilePath="mdcrawler/src/main/resources/unadded.txt";
